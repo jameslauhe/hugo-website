@@ -1,0 +1,86 @@
+baseURL = "https://hugo-website.pages.dev/"
+title = "James Lau He"
+theme = ["PaperMod"]
+languageCode = "en-us"
+
+enableInlineShortcodes = true
+enableRobotsTXT = true
+enableEmoji = true
+buildDrafts = false
+buildFuture = false
+pygmentsUseClasses = true
+
+mainsections = ["posts"]
+
+[pagination]
+  pagerSize = 10
+
+[minify]
+  disableXML = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  env = "production"
+  description = "Personal site of James Lau He — writing and creative projects."
+  author = "James Lau He"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  ShowRssButtonInSectionTermList = true
+  disableSpecial1stPost = true
+  images = ["images/profile.png"]
+
+  [params.profileMode]
+    enabled = true
+    title = "James Lau He"
+    subtitle = "Writer and builder of small things. Notes on what I'm learning, plus a few projects I've made."
+    imageUrl = "images/profile.png"
+    imageTitle = "James Lau He"
+    imageWidth = 150
+    imageHeight = 150
+
+    [[params.profileMode.buttons]]
+      name = "Writing"
+      url = "posts"
+    [[params.profileMode.buttons]]
+      name = "Creative"
+      url = "projects"
+    [[params.profileMode.buttons]]
+      name = "Contact"
+      url = "contact"
+
+  [[params.socialIcons]]
+    name = "github"
+    title = "GitHub"
+    url = "https://github.com/jameslauhe"
+  [[params.socialIcons]]
+    name = "email"
+    title = "Email"
+    url = "mailto:james.lau.he@gmail.com"
+  [[params.socialIcons]]
+    name = "rss"
+    title = "RSS"
+    url = "index.xml"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[[languages.en.menu.main]]
+  name = "Writing"
+  pageRef = "/posts"
+  weight = 10
+[[languages.en.menu.main]]
+  name = "Creative"
+  pageRef = "/projects"
+  weight = 20
+[[languages.en.menu.main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 30
