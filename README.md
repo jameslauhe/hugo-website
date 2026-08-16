@@ -44,20 +44,16 @@ Same pattern — fill in front matter, set `draft: false` to publish.
 git submodule update --remote --merge
 ```
 
-## Deployment (Cloudflare Pages)
+## Deployment (Cloudflare Workers, static assets)
 
-This repo is deployed via Cloudflare Pages' Git integration — no build config lives in the repo itself.
+This repo deploys as a Cloudflare Worker serving static assets, configured entirely in-repo:
 
-Project settings (Cloudflare dashboard → Pages → this project → Settings):
+- **`wrangler.jsonc`** — Worker config: project name, compatibility date, build command, and the assets directory (`./public`, Hugo's output), with `404-page` handling (PaperMod ships a `404.html` layout).
+- **`build.sh`** — installs pinned versions of Hugo (plus Dart Sass/Go/Node.js, only if this project ever needs them), initializes the `themes/PaperMod` git submodule, and runs `hugo build --gc --minify`.
 
-- **Production branch**: the repo's default branch
-- **Build command**: `hugo --gc --minify`
-- **Build output directory**: `public`
-- **Environment variable**: `HUGO_VERSION` set to a recent Hugo release (≥ 0.146.0)
+To deploy: connect this repo in the Cloudflare dashboard (Workers & Pages → Create → connect to Git) so Workers Builds runs `build.sh` on every push, or deploy manually with `npx wrangler deploy` after running `./build.sh` locally.
 
-Cloudflare Pages clones the repo including the `themes/PaperMod` git submodule automatically (the submodule URL must stay `https://`, not `git@`, for anonymous cloning to work).
-
-Once a custom domain is attached, update `baseURL` in `hugo.toml` to match.
+Once a custom domain is attached, update `baseURL` in `hugo.toml` and `name` in `wrangler.jsonc` to match.
 
 ## Private section (`/private/`)
 

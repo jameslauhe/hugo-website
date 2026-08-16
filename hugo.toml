@@ -1,7 +1,7 @@
 baseURL = "https://hugo-website.pages.dev/"
 title = "James Lau He"
 theme = ["PaperMod"]
-languageCode = "en-us"
+locale = "en-us"
 
 enableInlineShortcodes = true
 enableRobotsTXT = true
